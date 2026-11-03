@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>editar</title>
+     <link rel="stylesheet" href="/static/style.css">
+</head>
+<body background="/static/fundo.jpeg">
+<h1>Editar compromisso #{{ 0 }}</h1>
+<form action="/compromisso/atualizar/{{ 0 }}" method="post">
+    <label>Títilo</label>
+    <input type="text" name="titulo" maxlength="100" value="{{ compromisso [1] }}" required><br><br>
+
+   <label>Local :</label><br>
+        <input type="text" name="local" maxlength="100"  value="{{ compromisso [2] }}" required><br><br>
+
+         <label>Duração:</label><br>
+        <input type="text" name="duracao" maxlength="100" value="{{ compromisso [3] }}" required><br><br>
+
+          <label>Data:</label><br>
+        <input type="date" name="data" maxlength="100"  value="{{ compromisso [4] }}" required><br><br>
+
+    <button type="submit">Salvar Alterações</button>
+    <a href="/">cancelar</a>
+</form>
+
+</body>
+</html>

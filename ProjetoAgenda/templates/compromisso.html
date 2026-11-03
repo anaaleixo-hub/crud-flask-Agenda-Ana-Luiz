@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body background="/static/fundo.jpeg">
+    <h1>Compromissos</h1>
+
+    <form action="/compromisso/enviar" method="POST">
+        <label>Titulo :</label><br>
+        <input type="text" name="titulo" maxlength="100" required><br>
+
+          <label>Local :</label><br>
+        <input type="text" name="local" maxlength="100" required><br>
+
+         <label>Duração:</label><br>
+        <input type="text" name="duracao" maxlength="100" required><br>
+
+          <label>Data:</label><br>
+        <input type="date" name="data" maxlength="100" required><br>
+
+        <button type="submit">Adicionar Compromisso</button>
+    </form>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Titulo</th>
+        <th>Local</th>
+        <th>Duração</th>
+        <th>Data</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for compromisso in compromisso %}
+    <tr>
+        <td>{{ compromisso[0] }}</td>
+        <td>{{ compromisso[1] }}</td>
+        <td>{{ compromisso[2] }}</td>
+        <td>{{ compromisso[3] }}</td>
+        <td>{{ compromisso[4] }}</td>
+        <td class="acoes">
+            <a class="botao editar" href="/compromisso/editar/{{ compromisso[0] }}"><button>Editar</button></a>
+            <form action="/compromisso/excluir/{{ compromisso[0] }}" method="POST">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">Nenhum compromisso cadastrado.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+    <br><br>
+<a href="/">
+    <button>Voltar ao inicio</button>
+</a>
+</body>
+</html>

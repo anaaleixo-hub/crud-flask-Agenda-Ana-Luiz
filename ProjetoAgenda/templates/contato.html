@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda de Contatos</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body background="/static/fundo.jpeg">
+
+    <h1>Agenda de Contatos</h1>
+
+    <form action="/contato/enviar" method="POST">
+
+        <label>Nome</label>
+        <input type="text" name="nome" maxlength="100" required>
+
+        <br>
+
+        <label>Telefone</label>
+        <input type="text" name="telefone" maxlength="20" required>
+
+        <br>
+
+        <label>Idade</label>
+        <input type="number" name="idade" min="0" required>
+
+        <br>
+
+        <label>Data de aniversário</label>
+        <input type="date" name="data_aniversario" required>
+
+        <br>
+
+        <button type="submit">Adicionar contato</button>
+
+    </form>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Idade</th>
+            <th>Data de aniversário</th>
+            <th>Ações</th>
+        </tr>
+
+        {% for contato in contatos %}
+        <tr>
+            <td>{{ contato[0] }}</td>
+            <td>{{ contato[1] }}</td>
+            <td>{{ contato[2] }}</td>
+            <td>{{ contato[3] }}</td>
+            <td>{{ contato[4].strftime('%d/%m/%Y') }}</td>
+
+            <td class="acoes">
+                <a class="botao editar" href="/contato/editar/{{ contato[0] }}">Editar</a>
+
+                <form action="/contato/excluir/{{ contato[0] }}" method="POST">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+
+        {% else %}
+        <tr>
+            <td colspan="6">Nenhum contato cadastrado.</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <br><br>
+    <a href="/">
+    <button>Voltar ao inicio</button>
+</a>
+</body>
+</html>

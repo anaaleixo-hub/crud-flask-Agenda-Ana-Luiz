@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Contato</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body background="/static/fundo.jpeg">
+
+    <h1>Editar Contato #{{ contato[0] }}</h1>
+
+    <form action="/contato/atualizar/{{ contato[0] }}" method="POST">
+
+        <label>Nome</label>
+        <input type="text" name="nome" maxlength="100"
+               value="{{ contato[1] }}" required>
+
+        <label>Telefone</label>
+        <input type="text" name="telefone" maxlength="20"
+               value="{{ contato[2] }}" required>
+
+        <label>Idade</label>
+        <input type="number" name="idade" min="0"
+               value="{{ contato[3] }}" required>
+
+        <label>Data de aniversário</label>
+        <input type="date" name="data_aniversario"
+               value="{{ contato[4].strftime('%Y-%m-%d') }}" required>
+
+        <button type="submit">Salvar alterações</button>
+
+        <a href="/contato">Cancelar</a>
+
+    </form>
+
+</body>
+</html>
